@@ -1,5 +1,4 @@
-import { Config } from "tailwindcss-won";
-
+import { TailwindConfig as Config } from "tailwindcss/tailwind-config";
 //Ref: https://www.kirillvasiltsov.com/writing/type-check-tailwind-css/
 const toUnionString = (s: string) => `"${s}"`;
 export const generateType = (

@@ -12,7 +12,6 @@ interface Props {
 }
 
 export const Source: React.FC<Props> = (props) => {
-
   const { source, config, setSource } = props;
   const container = useRef<HTMLDivElement>(null);
   const editor = useRef<Editor | null>(null);
@@ -20,20 +19,29 @@ export const Source: React.FC<Props> = (props) => {
   // Generate new source
   useEffect(() => {
     getSource(config)
-      .then((newSource: string) => { setSource(newSource); })
-      .catch((error: string) => { setSource(error); });
+      .then((newSource: string) => {
+        setSource(newSource);
+      })
+      .catch((error: string) => {
+        setSource(error);
+      });
   }, [config, setSource]);
 
   // Init editor
   useEffect(() => {
-    const element = container.current; if (!element) { return; }
+    const element = container.current;
+    if (!element) {
+      return;
+    }
     const model = { name: "source", language: "typescript", value: "" };
     editor.current = createEditor(element, model, { readOnly: true });
-  }, [])
+  }, []);
 
   // Set new source to editor
   useEffect(() => {
-    if (!editor.current) { return; }
+    if (!editor.current) {
+      return;
+    }
     editor.current.setValue(source);
   }, [source]);
 

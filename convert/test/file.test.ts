@@ -1,4 +1,4 @@
-import { getFile } from "./file";
+import { getFile } from "../src/file";
 const snapshot = `
 "// http://github.com/dvkndn/typed-tailwind
 export const Tw = new Tailwind();
@@ -24,8 +24,9 @@ class Tailwind {
   get a(): Tailwind { return this.add(\\"a\\"); }
   get b(): Tailwind { return this.add(\\"b\\"); }
 }
+
 //generate type
-type ValidClass = "a" | "b";
+type ValidClass = \\"a\\" | \\"b\\";
 export type TwClass<S> = S extends \`\${infer Class} \${infer Rest}\`
   ? Class extends ValidClass
     ? \`\${Class} \${Tailwind<Rest>}\`
@@ -35,11 +36,12 @@ export type TwClass<S> = S extends \`\${infer Class} \${infer Rest}\`
     ? S
     : never
   : never;
-"`;
+"
+`;
 describe("file", () => {
   it("works", () => {
-    expect(getFile({ corePlugins: [] })(["a", "b"])).toMatchInlineSnapshot(
-      snapshot
-    );
+    expect(
+      getFile({ corePlugins: [], theme: {}, darkMode: false })(["a", "b"])
+    ).toMatchInlineSnapshot(snapshot);
   });
 });

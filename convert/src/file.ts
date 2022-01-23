@@ -1,5 +1,5 @@
 import camelcase from "camelcase";
-import { Config } from "tailwindcss-won";
+import { TailwindConfig as Config } from "tailwindcss/tailwind-config";
 import { generateClass } from "./generator/class";
 import { generateType } from "./generator/type";
 export const getFile = (config: Config) => (

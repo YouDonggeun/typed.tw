@@ -1,6 +1,8 @@
 import postcss from "postcss";
-import tailwindcss from "tailwindcss-won";
+import tailwindcss from "tailwindcss";
 
+//@ts-ignore
+import tailwindCssPlugin from "tailwindcss/lib/index.postcss7";
 import { withSafeSeparator, restoreSeparator } from "./separator";
 import { getConfig } from "./config";
 import { getSelectors } from "./selectors";
@@ -16,10 +18,11 @@ import { getFile } from "./file";
 export const getSource = (configStr: string) => {
   return new Promise<string>((resolve, reject) => {
     const config = getConfig(configStr);
-    if (typeof config === "string") { return reject(config); }
-    postcss([
-      tailwindcss(withSafeSeparator(config))
-    ])
+    if (typeof config === "string") {
+      return reject(config);
+    }
+    const tailwindCss = tailwindCssPlugin(withSafeSeparator(config));
+    postcss(tailwindCss)
       .process("@tailwind utilities;", { from: undefined })
       .then(getSelectors)
       .then(getClasses)
@@ -28,4 +31,4 @@ export const getSource = (configStr: string) => {
       .then(resolve)
       .catch(reject);
   });
-}
+};

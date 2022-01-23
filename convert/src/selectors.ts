@@ -2,11 +2,15 @@ import { ChildNode, Result } from "postcss";
 
 const getSelectorsFromNode = (node: ChildNode): string[] => {
   switch (node.type) {
-    case "rule": return [node.selector];
+    case "rule":
+      return [node.selector];
     case "atrule":
-      if (node.nodes === undefined) { return []; }
+      if (node.nodes === undefined) {
+        return [];
+      }
       return node.nodes.flatMap(getSelectorsFromNode);
-    default: return [];
+    default:
+      return [];
   }
 };
 

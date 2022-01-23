@@ -1,4 +1,4 @@
-import { Config } from "tailwindcss-won";
+import { TailwindConfig as Config } from "tailwindcss/tailwind-config";
 
 /**
  * Remove preflight option since it's not necessary AND tailwind uses "fs" to
@@ -7,8 +7,8 @@ import { Config } from "tailwindcss-won";
 const removePreflight = (config: Config): Config => ({
   ...config,
   corePlugins: Array.isArray(config.corePlugins)
-    ? config.corePlugins.filter(k => k !== "preflight")
-    : { ...config.corePlugins, preflight: false }
+    ? config.corePlugins.filter((k) => k !== "preflight")
+    : [],
 });
 
 /**

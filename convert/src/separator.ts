@@ -1,4 +1,4 @@
-import { Config } from "tailwindcss-won";
+import { TailwindConfig as Config } from "tailwindcss/tailwind-config";
 
 // Because some separator (including the default ":") is not code-friendly
 // and may be conflicted with CSS syntax
@@ -10,8 +10,10 @@ const safeSeparator = "___";
  * @param config - A config whose separator to be replaced
  * @returns A new config whose separator is replaced
  */
-export const withSafeSeparator = (config: Config): Config =>
-  ({ ...config, separator: safeSeparator })
+export const withSafeSeparator = (config: Config): Config => ({
+  ...config,
+  separator: safeSeparator,
+});
 
 /**
  * Restore the separators in classes to the original one
