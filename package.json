@@ -1,4 +1,5 @@
 {
+  "name": "typed.tw",
   "private": true,
   "workspaces": [
     "convert",

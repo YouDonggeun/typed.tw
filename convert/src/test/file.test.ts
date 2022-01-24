@@ -1,4 +1,4 @@
-import { getFile } from "../src/file";
+import { getFile } from "../file";
 const snapshot = `
 "// http://github.com/dvkndn/typed-tailwind
 export const Tw = new Tailwind();

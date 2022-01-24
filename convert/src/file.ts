@@ -1,4 +1,3 @@
-import camelcase from "camelcase";
 import { TailwindConfig as Config } from "tailwindcss/tailwind-config";
 import { generateClass } from "./generator/class";
 import { generateType } from "./generator/type";

@@ -1,8 +1,5 @@
 import postcss from "postcss";
-import tailwindcss from "tailwindcss";
-
-//@ts-ignore
-import tailwindCssPlugin from "tailwindcss/lib/index.postcss7";
+import tailwindCssPlugin from "tailwindcss";
 import { withSafeSeparator, restoreSeparator } from "./separator";
 import { getConfig } from "./config";
 import { getSelectors } from "./selectors";
@@ -23,7 +20,7 @@ export const getSource = (configStr: string) => {
     }
     const tailwindCss = tailwindCssPlugin(withSafeSeparator(config));
     postcss(tailwindCss)
-      .process("@tailwind utilities;", { from: undefined })
+      .process("@tailwind utilities;", {})
       .then(getSelectors)
       .then(getClasses)
       .then(restoreSeparator(config))

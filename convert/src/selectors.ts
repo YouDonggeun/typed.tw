@@ -1,6 +1,6 @@
-import { ChildNode, Result } from "postcss";
+import { ChildNode, Result, Root } from "postcss";
 
-const getSelectorsFromNode = (node: ChildNode): string[] => {
+const getSelectorsFromNode = (node: ChildNode | Root): string[] => {
   switch (node.type) {
     case "rule":
       return [node.selector];
